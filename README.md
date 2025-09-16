@@ -9,7 +9,7 @@ Plataforma fictícia de jogos brasileiros desenvolvida como projeto acadêmico d
 -  **Área do Usuário**: Espaço personalizado para o jogador.  
 -  **Meus Jogos**: Biblioteca dos jogos adquiridos.  
 -  **Fórum**: Espaço de interação entre jogadores.  
-- 🛠 **Suporte**: Formulário para contato em caso de problemas.  
+-  **Suporte**: Formulário para contato em caso de problemas.  
 
 ---
 
