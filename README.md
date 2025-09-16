@@ -36,8 +36,6 @@ Plataforma fictícia de jogos brasileiros desenvolvida como projeto acadêmico d
 
 ---
 
-##  Link do Repositório
- [Clique aqui para acessar](https://github.com/juliaaguiar1/iara-games)  
 
 ---
 
