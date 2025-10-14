@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iara Games — Cadastro</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
+
+  <div class="wrapper">
+    <header class="site" role="banner">
+      <h1 class="logo-title">Iara <span class="accent">Games</span></h1>
+      <p class="subtitle">Crie sua conta e entre no mundo dos jogos brasileiros</p>
+
+      <nav class="primary" role="navigation" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html">Loja</a></li>
+          <li><a href="usuario.html">Área do Usuário</a></li>
+          <li><a href="meus-jogos.html">Meus Jogos</a></li>
+          <li><a href="forum.html">Fórum</a></li>
+          <li><a href="suporte.html">Suporte</a></li>
+          <li><a class="active" aria-current="page" href="cadastro.html">Criar conta</a></li>
+        </ul>
+      </nav>
+
+      <!-- Painel de acessibilidade -->
+      <div class="acessibilidade" aria-label="Configurações de acessibilidade">
+        <label><input type="checkbox" id="alto-contraste"> Alto contraste</label>
+        <label><input type="checkbox" id="grande-fonte"> Fonte ampliada</label>
+      </div>
+    </header>
+
+    <main id="conteudo-principal" tabindex="-1">
+      <section class="panel" aria-labelledby="titulo-cadastro">
+        <h2 id="titulo-cadastro">Formulário de Cadastro</h2>
+        <p>Preencha seus dados para criar sua conta na Iara Games.</p>
+
+        <form class="form" id="cadastroForm" novalidate>
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" name="nome" required aria-required="true" aria-describedby="nome-erro">
+          <small id="nome-erro" class="error" aria-live="polite"></small>
+
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" required aria-required="true" aria-describedby="email-erro">
+          <small id="email-erro" class="error" aria-live="polite"></small>
+
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" name="senha" required aria-required="true" aria-describedby="senha-ajuda senha-erro">
+          <small id="senha-ajuda" class="help">A senha deve ter pelo menos 6 caracteres.</small>
+          <small id="senha-erro" class="error" aria-live="polite"></small>
+
+          <label for="nascimento">Data de nascimento</label>
+          <input type="date" id="nascimento" name="nascimento" aria-describedby="data-erro">
+          <small id="data-erro" class="error" aria-live="polite"></small>
+
+          <button type="submit" class="btn">Cadastrar</button>
+        </form>
+      </section>
+
+      <footer class="site" role="contentinfo">
+        <div class="footer-row">
+          <span>&copy; <span data-ano></span> Iara Games — Cadastro</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Validação básica acessível do formulário
+    document.getElementById('cadastroForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      let valido = true;
+
+      const nome = document.getElementById('nome');
+      const email = document.getElementById('email');
+      const senha = document.getElementById('senha');
+      const nomeErro = document.getElementById('nome-erro');
+      const emailErro = document.getElementById('email-erro');
+      const senhaErro = document.getElementById('senha-erro');
+
+      nomeErro.textContent = '';
+      emailErro.textContent = '';
+      senhaErro.textContent = '';
+
+      if (nome.value.trim() === '') {
+        nomeErro.textContent = 'Por favor, preencha seu nome completo.';
+        valido = false;
+      }
+
+      if (email.value.trim() === '' || !email.value.includes('@')) {
+        emailErro.textContent = 'Digite um e-mail válido.';
+        valido = false;
+      }
+
+      if (senha.value.length < 6) {
+        senhaErro.textContent = 'A senha deve ter no mínimo 6 caracteres.';
+        valido = false;
+      }
+
+      if (valido) {
+        alert('Cadastro realizado com sucesso!');
+        this.reset();
+      }
+    });
+  </script>
+</body>
+</html>
+

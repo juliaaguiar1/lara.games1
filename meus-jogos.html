@@ -7,63 +7,76 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
+
   <div class="wrapper">
-    <header class="site">
+    <header class="site" role="banner">
       <h1 class="logo-title">Iara <span class="accent">Games</span></h1>
       <p class="subtitle">Sua Biblioteca de Jogos</p>
-      <nav class="primary">
+
+      <nav class="primary" role="navigation" aria-label="Menu principal">
         <ul>
           <li><a href="index.html">Loja</a></li>
           <li><a href="usuario.html">Área do Usuário</a></li>
-          <li><a class="active" href="meus-jogos.html">Meus Jogos</a></li>
+          <li><a class="active" aria-current="page" href="meus-jogos.html">Meus Jogos</a></li>
           <li><a href="forum.html">Fórum</a></li>
           <li><a href="suporte.html">Suporte</a></li>
+          <li><a href="cadastro.html">Criar conta</a></li>
         </ul>
       </nav>
+
+      <!-- Painel de acessibilidade -->
+      <div class="acessibilidade" aria-label="Configurações de acessibilidade">
+        <label><input type="checkbox" id="alto-contraste"> Alto contraste</label>
+        <label><input type="checkbox" id="grande-fonte"> Fonte ampliada</label>
+      </div>
     </header>
 
-    <main>
+    <main id="conteudo-principal" tabindex="-1">
       <section class="panel">
         <h2>Meus Jogos</h2>
         <p>Aqui estão os jogos que você já adquiriu na Iara Games.</p>
       </section>
 
-      <section class="panel">
+      <section class="panel" aria-label="Lista de jogos da biblioteca do usuário">
         <div class="games-list">
-          
+          <!-- Jogo 1 -->
           <article class="game-card">
-            <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/609110/header.jpg" alt="Capa do jogo Blazing Chrome">
+            <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/609110/header.jpg"
+              alt="Capa do jogo Blazing Chrome" />
             <h3>Blazing Chrome</h3>
             <p>Ação frenética estilo retrô, inspirado na clássica série Contra. Produzido pelo estúdio JoyMasher (Brasil).</p>
-            <a class="btn" href="https://store.steampowered.com/app/609110/Blazing_Chrome/?l=brazilian" target="_blank" rel="noopener noreferrer">
-              Jogar Agora
-            </a>
+            <a class="btn" href="https://store.steampowered.com/app/609110/Blazing_Chrome/?l=brazilian" target="_blank" rel="noopener noreferrer">Jogar Agora</a>
           </article>
 
-         
+          <!-- Jogo 2 -->
           <article class="game-card">
-            <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/320820/header.jpg" alt="Capa do jogo Toren">
+            <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/320820/header.jpg"
+              alt="Capa do jogo Toren" />
             <h3>Toren</h3>
             <p>Aventura poética cheia de simbolismo, criada pelo estúdio Swordtales (Brasil).</p>
-            <a class="btn" href="https://store.steampowered.com/app/320820/Toren/?l=brazilian" target="_blank" rel="noopener noreferrer">
-              Jogar Agora
-            </a>
+            <a class="btn" href="https://store.steampowered.com/app/320820/Toren/?l=brazilian" target="_blank" rel="noopener noreferrer">Jogar Agora</a>
           </article>
 
-          
+          <!-- Jogo 3 -->
           <article class="game-card">
-            <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1039100/header.jpg" alt="Capa do jogo No Place for Bravery">
+            <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1039100/header.jpg"
+              alt="Capa do jogo No Place for Bravery" />
             <h3>No Place for Bravery</h3>
             <p>RPG de ação intenso com narrativa madura. Produzido pelo estúdio Glitch Factory (Brasil).</p>
-            <a class="btn" href="https://store.steampowered.com/app/1039100/No_Place_for_Bravery/?l=brazilian" target="_blank" rel="noopener noreferrer">
-              Jogar Agora
-            </a>
+            <a class="btn" href="https://store.steampowered.com/app/1039100/No_Place_for_Bravery/?l=brazilian" target="_blank" rel="noopener noreferrer">Jogar Agora</a>
           </article>
         </div>
       </section>
 
-      <footer class="site">&copy; 2025 Iara Games — Meus Jogos</footer>
+      <footer class="site" role="contentinfo">
+        <div class="footer-row">
+          <span>&copy; <span data-ano></span> Iara Games — Meus Jogos</span>
+        </div>
+      </footer>
     </main>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

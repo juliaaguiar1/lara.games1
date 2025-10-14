@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
   <div class="wrapper">
     <header class="site">
       <h1 class="logo-title">Iara <span class="accent">Games</span></h1>
@@ -17,15 +18,16 @@
           <li><a href="usuario.html">Área do Usuário</a></li>
           <li><a href="meus-jogos.html">Meus Jogos</a></li>
           <li><a href="forum.html">Fórum</a></li>
-          <li><a class="active" href="suporte.html">Suporte</a></li>
+          <li><a class="active" aria-current="page" href="suporte.html">Suporte</a></li>
+          <li><a href="cadastro.html">Criar conta</a></li>
         </ul>
       </nav>
     </header>
 
-    <main>
+    <main id="conteudo-principal" tabindex="-1">
       <section class="panel">
         <h2>Contato</h2>
-        <form class="form">
+        <form class="form" aria-label="Formulário de contato com suporte">
           <label for="nome">Nome</label>
           <input id="nome" type="text" required>
 
@@ -41,6 +43,6 @@
       <footer class="site">&copy; 2025 Iara Games — Suporte</footer>
     </main>
   </div>
+  <script src="script.js"></script>
 </body>
 </html>
-

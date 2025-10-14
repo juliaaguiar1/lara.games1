@@ -7,41 +7,55 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
   <div class="wrapper">
-    <header class="site">
+    <header class="site" role="banner">
       <h1 class="logo-title">Iara <span class="accent">Games</span></h1>
       <p class="subtitle">Discussões da comunidade</p>
-      <nav class="primary">
+      <nav class="primary" role="navigation" aria-label="Menu principal">
         <ul>
           <li><a href="index.html">Loja</a></li>
           <li><a href="usuario.html">Área do Usuário</a></li>
           <li><a href="meus-jogos.html">Meus Jogos</a></li>
-          <li><a class="active" href="forum.html">Fórum</a></li>
+          <li><a class="active" aria-current="page" href="forum.html">Fórum</a></li>
           <li><a href="suporte.html">Suporte</a></li>
+          <li><a href="cadastro.html">Criar conta</a></li>
         </ul>
       </nav>
     </header>
 
-    <main>
-      <section class="panel">
-        <h2>Tópicos Recentes</h2>
-        <div class="forum-list">
-          <article>
+    <main id="conteudo-principal" tabindex="-1">
+      <section class="panel" aria-labelledby="tit-topicos">
+        <h2 id="tit-topicos">Tópicos Recentes</h2>
+        <div class="forum-list" role="list">
+          <article role="listitem">
             <h3>[Discussão] Melhor jogo brasileiro?</h3>
             <p class="forum-meta">Iniciado por Mj.gamer — 15 respostas</p>
           </article>
-          <article>
+          <article role="listitem">
             <h3>[Ajuda] Problema para rodar no Linux</h3>
             <p class="forum-meta">Iniciado por vitorweb — 8 respostas</p>
           </article>
-          <article>
+          <article role="listitem">
             <h3>[Sugestão] Novos modos de jogo para Capoeira Warriors</h3>
             <p class="forum-meta">Iniciado por RafaelDev — 22 respostas</p>
           </article>
         </div>
       </section>
-      <footer class="site">&copy; 2025 Iara Games — Fórum</footer>
+
+      <footer class="site" role="contentinfo">
+        <div class="footer-row">
+          <span>&copy; <span data-ano></span> Iara Games — Fórum</span>
+          <label for="pref-font-size">Tamanho da fonte:</label>
+          <select id="pref-font-size" class="pref" aria-label="Alterar tamanho da fonte">
+            <option value="base">Padrão</option>
+            <option value="maior">Maior</option>
+            <option value="extra">Extra</option>
+          </select>
+        </div>
+      </footer>
     </main>
   </div>
+  <script src="script.js"></script>
 </body>
 </html>
