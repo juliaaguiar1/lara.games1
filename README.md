@@ -40,5 +40,5 @@ Plataforma fictícia de jogos brasileiros desenvolvida como projeto acadêmico d
 ---
 
 ##  Autoria
-**Nome:** Júlia Aguiar  
-**Turma:** Web Design – FIAP 2025  
+Projeto desenvolvido por Júlia Aguiar de Moura Moisés para a disciplina de Design Web — Fase 2: Code & Create.
+O site “Iara Games” promove jogos brasileiros com foco em acessibilidade e usabilidade.
