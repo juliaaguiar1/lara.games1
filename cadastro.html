@@ -1,112 +1,74 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Iara Games — Cadastro</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lara Games — Cadastro</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
 </head>
-<body>
+<body class="bg-dark text-light">
   <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
 
-  <div class="wrapper">
-    <header class="site" role="banner">
-      <h1 class="logo-title">Iara <span class="accent">Games</span></h1>
-      <p class="subtitle">Crie sua conta e entre no mundo dos jogos brasileiros</p>
-
-      <nav class="primary" role="navigation" aria-label="Menu principal">
-        <ul>
-          <li><a href="index.html">Loja</a></li>
-          <li><a href="usuario.html">Área do Usuário</a></li>
-          <li><a href="meus-jogos.html">Meus Jogos</a></li>
-          <li><a href="forum.html">Fórum</a></li>
-          <li><a href="suporte.html">Suporte</a></li>
-          <li><a class="active" aria-current="page" href="cadastro.html">Criar conta</a></li>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-neon">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">
+        <span class="logo">
+          <span class="lara">LARA</span>
+          <span class="games">GAMES</span>
+          <svg class="curve" viewBox="0 0 200 20" aria-hidden="true"><path d="M5 12 C 45 2, 85 22, 125 12 S 205 18, 195 12" stroke="#00D1FF" stroke-width="6" fill="none" stroke-linecap="round"/></svg>
+        </span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="menuNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Loja</a></li>
+          <li class="nav-item"><a class="nav-link" href="meus-jogos.html">Meus Jogos</a></li>
+          <li class="nav-item"><a class="nav-link" href="suporte.html">Suporte</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="cadastro.html">Criar Conta</a></li>
         </ul>
-      </nav>
-
-      <!-- Painel de acessibilidade -->
-      <div class="acessibilidade" aria-label="Configurações de acessibilidade">
-        <label><input type="checkbox" id="alto-contraste"> Alto contraste</label>
-        <label><input type="checkbox" id="grande-fonte"> Fonte ampliada</label>
       </div>
-    </header>
+    </div>
+  </nav>
 
-    <main id="conteudo-principal" tabindex="-1">
-      <section class="panel" aria-labelledby="titulo-cadastro">
-        <h2 id="titulo-cadastro">Formulário de Cadastro</h2>
-        <p>Preencha seus dados para criar sua conta na Iara Games.</p>
+  <header class="container text-center py-5">
+    <h1 class="display-6 fw-bold">
+      Criar conta — <span class="lara">Lara</span> <span class="games">Games</span>
+    </h1>
+    <p class="lead">Preencha seus dados para começar a jogar.</p>
+    <div class="mt-3 acessibilidade" aria-label="Configurações de acessibilidade">
+      <label class="me-3"><input type="checkbox" id="alto-contraste"> Alto contraste</label>
+      <label><input type="checkbox" id="grande-fonte"> Fonte ampliada</label>
+    </div>
+  </header>
 
-        <form class="form" id="cadastroForm" novalidate>
-          <label for="nome">Nome completo</label>
-          <input type="text" id="nome" name="nome" required aria-required="true" aria-describedby="nome-erro">
-          <small id="nome-erro" class="error" aria-live="polite"></small>
+  <main id="conteudo-principal" tabindex="-1" class="container pb-5">
+    <form id="cadastroForm" class="col-lg-6 col-md-8 mx-auto bg-panel p-4 rounded-3 border-neon">
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome completo</label>
+        <input type="text" id="nome" name="nome" class="form-control" required aria-required="true">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input type="email" id="email" name="email" class="form-control" required aria-required="true">
+      </div>
+      <div class="mb-2">
+        <label for="senha" class="form-label">Senha</label>
+        <input type="password" id="senha" name="senha" class="form-control" required aria-required="true" aria-describedby="senha-ajuda">
+        <div id="senha-ajuda" class="form-text">A senha deve ter pelo menos 6 caracteres.</div>
+      </div>
+      <button type="submit" class="btn btn-neon w-100 mt-2">Cadastrar</button>
+      <!-- mensagem dinâmica: <p id="msgCadastro"></p> -->
+    </form>
+  </main>
 
-          <label for="email">E-mail</label>
-          <input type="email" id="email" name="email" required aria-required="true" aria-describedby="email-erro">
-          <small id="email-erro" class="error" aria-live="polite"></small>
-
-          <label for="senha">Senha</label>
-          <input type="password" id="senha" name="senha" required aria-required="true" aria-describedby="senha-ajuda senha-erro">
-          <small id="senha-ajuda" class="help">A senha deve ter pelo menos 6 caracteres.</small>
-          <small id="senha-erro" class="error" aria-live="polite"></small>
-
-          <label for="nascimento">Data de nascimento</label>
-          <input type="date" id="nascimento" name="nascimento" aria-describedby="data-erro">
-          <small id="data-erro" class="error" aria-live="polite"></small>
-
-          <button type="submit" class="btn">Cadastrar</button>
-        </form>
-      </section>
-
-      <footer class="site" role="contentinfo">
-        <div class="footer-row">
-          <span>&copy; <span data-ano></span> Iara Games — Cadastro</span>
-        </div>
-      </footer>
-    </main>
-  </div>
+  <footer class="text-center py-4 border-top border-neon">
+    <p class="mb-0">&copy; <span data-ano></span> Lara Games — Cadastro</p>
+  </footer>
 
   <script src="script.js"></script>
-  <script>
-    // Validação básica acessível do formulário
-    document.getElementById('cadastroForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      let valido = true;
-
-      const nome = document.getElementById('nome');
-      const email = document.getElementById('email');
-      const senha = document.getElementById('senha');
-      const nomeErro = document.getElementById('nome-erro');
-      const emailErro = document.getElementById('email-erro');
-      const senhaErro = document.getElementById('senha-erro');
-
-      nomeErro.textContent = '';
-      emailErro.textContent = '';
-      senhaErro.textContent = '';
-
-      if (nome.value.trim() === '') {
-        nomeErro.textContent = 'Por favor, preencha seu nome completo.';
-        valido = false;
-      }
-
-      if (email.value.trim() === '' || !email.value.includes('@')) {
-        emailErro.textContent = 'Digite um e-mail válido.';
-        valido = false;
-      }
-
-      if (senha.value.length < 6) {
-        senhaErro.textContent = 'A senha deve ter no mínimo 6 caracteres.';
-        valido = false;
-      }
-
-      if (valido) {
-        alert('Cadastro realizado com sucesso!');
-        this.reset();
-      }
-    });
-  </script>
 </body>
 </html>
-

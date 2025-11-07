@@ -1,30 +1,20 @@
-/* =====================================================
-   IARA GAMES — script.js (versão final)
-   Funções de acessibilidade + interatividade
-   ===================================================== */
-
-// Quando o site carregar completamente
 document.addEventListener('DOMContentLoaded', () => {
-  /* --- Atualiza o ano automaticamente no rodapé --- */
-  const anoEl = document.querySelectorAll('[data-ano]');
-  const anoAtual = new Date().getFullYear();
-  anoEl.forEach(el => el.textContent = anoAtual);
+  /* Atualiza ano no rodapé */
+  document.querySelectorAll('[data-ano]').forEach(el => el.textContent = new Date().getFullYear());
 
-  /* --- Carrega preferências salvas --- */
+  /* Preferências salvas */
   const contrasteSalvo = localStorage.getItem('contraste') === 'true';
   const fonteSalva = localStorage.getItem('fonte') === 'true';
 
   const chkContraste = document.getElementById('alto-contraste');
   const chkFonte = document.getElementById('grande-fonte');
 
-  // Aplica preferências existentes
   if (contrasteSalvo) document.body.classList.add('alto-contraste');
   if (fonteSalva) document.body.classList.add('fonte-maior');
 
   if (chkContraste) chkContraste.checked = contrasteSalvo;
   if (chkFonte) chkFonte.checked = fonteSalva;
 
-  /* --- Observa mudanças nos botões de acessibilidade --- */
   if (chkContraste) {
     chkContraste.addEventListener('change', () => {
       const ativo = chkContraste.checked;
@@ -32,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('contraste', ativo);
     });
   }
-
   if (chkFonte) {
     chkFonte.addEventListener('change', () => {
       const ativo = chkFonte.checked;
@@ -41,52 +30,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* =====================================================
-     Validação acessível do formulário de cadastro
-     ===================================================== */
+  /* Validação do formulário de cadastro (se existir) */
   const form = document.getElementById('cadastroForm');
   if (form) {
     form.addEventListener('submit', e => {
       e.preventDefault();
-
       const nome = document.getElementById('nome');
       const email = document.getElementById('email');
       const senha = document.getElementById('senha');
-      const msgErro = document.createElement('p');
-      msgErro.id = 'msgCadastro';
-      msgErro.setAttribute('role', 'alert');
-      msgErro.style.marginTop = '10px';
-      msgErro.style.fontWeight = '600';
 
-      // Remove mensagens anteriores
-      const msgExistente = form.querySelector('#msgCadastro');
-      if (msgExistente) msgExistente.remove();
-      form.appendChild(msgErro);
+      let erros = [];
+      if (!nome.value.trim()) erros.push('Por favor, informe seu nome completo.');
+      if (!email.value.trim() || !email.value.includes('@')) erros.push('Digite um e-mail válido.');
+      if (!senha.value || senha.value.length < 6) erros.push('A senha deve ter no mínimo 6 caracteres.');
 
-      if (!nome.value.trim() || !email.value.trim() || !senha.value.trim()) {
-        msgErro.textContent = 'Por favor, preencha todos os campos obrigatórios.';
-        msgErro.style.color = '#ff5555';
+      let msg = document.getElementById('msgCadastro');
+      if (!msg) {
+        msg = document.createElement('p');
+        msg.id = 'msgCadastro';
+        msg.setAttribute('aria-live','polite');
+        msg.className = 'mt-2 fw-semibold';
+        form.appendChild(msg);
+      }
+
+      if (erros.length) {
+        msg.textContent = erros.join(' ');
+        msg.classList.remove('text-success');
+        msg.classList.add('text-danger');
         return;
       }
 
-      if (!email.value.includes('@')) {
-        msgErro.textContent = 'Digite um e-mail válido.';
-        msgErro.style.color = '#ff5555';
-        return;
-      }
-
-      if (senha.value.length < 6) {
-        msgErro.textContent = 'A senha deve ter no mínimo 6 caracteres.';
-        msgErro.style.color = '#ff5555';
-        return;
-      }
-
-      // Caso tudo esteja ok
-      msgErro.textContent = 'Cadastro realizado com sucesso!';
-      msgErro.style.color = '#00ff99';
+      msg.textContent = 'Cadastro realizado com sucesso!';
+      msg.classList.remove('text-danger');
+      msg.classList.add('text-success');
       form.reset();
-      localStorage.removeItem('contraste');
-      localStorage.removeItem('fonte');
     });
   }
 });
