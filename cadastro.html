@@ -1,74 +1,89 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Lara Games — Cadastro</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
-<body class="bg-dark text-light">
+
+<body>
   <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-neon">
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="index.html">
-        <span class="logo">
-          <span class="lara">LARA</span>
-          <span class="games">GAMES</span>
-          <svg class="curve" viewBox="0 0 200 20" aria-hidden="true"><path d="M5 12 C 45 2, 85 22, 125 12 S 205 18, 195 12" stroke="#00D1FF" stroke-width="6" fill="none" stroke-linecap="round"/></svg>
-        </span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav"><span class="navbar-toggler-icon"></span></button>
-      <div class="collapse navbar-collapse" id="menuNav">
-        <ul class="navbar-nav ms-auto">
+      <a class="navbar-brand brand" href="index.html">LARA <span class="brand-gradient">GAMES</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto gap-lg-2">
           <li class="nav-item"><a class="nav-link" href="index.html">Loja</a></li>
+          <li class="nav-item"><a class="nav-link" href="catalogo.html">Catálogo</a></li>
           <li class="nav-item"><a class="nav-link" href="meus-jogos.html">Meus Jogos</a></li>
           <li class="nav-item"><a class="nav-link" href="suporte.html">Suporte</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="cadastro.html">Criar Conta</a></li>
+          <li class="nav-item"><a class="nav-link active" href="cadastro.html">Criar Conta</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <header class="container text-center py-5">
-    <h1 class="display-6 fw-bold">
-      Criar conta — <span class="lara">Lara</span> <span class="games">Games</span>
-    </h1>
-    <p class="lead">Preencha seus dados para começar a jogar.</p>
-    <div class="mt-3 acessibilidade" aria-label="Configurações de acessibilidade">
-      <label class="me-3"><input type="checkbox" id="alto-contraste"> Alto contraste</label>
-      <label><input type="checkbox" id="grande-fonte"> Fonte ampliada</label>
-    </div>
+  <header class="container py-4">
+    <h1 class="h3 fw-bold mb-1">Criar conta</h1>
+    <p class="muted mb-0">Validação em JavaScript (mín. 6 caracteres na senha).</p>
   </header>
 
-  <main id="conteudo-principal" tabindex="-1" class="container pb-5">
-    <form id="cadastroForm" class="col-lg-6 col-md-8 mx-auto bg-panel p-4 rounded-3 border-neon">
-      <div class="mb-3">
-        <label for="nome" class="form-label">Nome completo</label>
-        <input type="text" id="nome" name="nome" class="form-control" required aria-required="true">
+  <main id="conteudo-principal" class="container pb-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="shell p-3 p-md-4">
+          <div class="d-flex justify-content-end gap-2 mb-3">
+            <button id="btnHighContrast" class="btn btn-outline-light btn-sm">
+              <i class="bi bi-circle-half me-1"></i> Alto contraste
+            </button>
+            <button id="btnFontLarge" class="btn btn-outline-light btn-sm">
+              <i class="bi bi-type me-1"></i> Fonte ampliada
+            </button>
+            <button id="btnClearPrefs" class="btn btn-outline-light btn-sm">
+              <i class="bi bi-trash3 me-1"></i>
+            </button>
+          </div>
+
+          <form id="cadastroForm">
+            <div class="mb-3">
+              <label for="nome" class="form-label">Nome completo</label>
+              <input type="text" id="nome" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">E-mail</label>
+              <input type="email" id="email" class="form-control" required>
+            </div>
+
+            <div class="mb-2">
+              <label for="senha" class="form-label">Senha</label>
+              <input type="password" id="senha" class="form-control" required>
+              <div class="form-text muted">Mínimo 6 caracteres.</div>
+            </div>
+
+            <button type="submit" class="btn btn-light w-100 mt-2">Cadastrar</button>
+          </form>
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">E-mail</label>
-        <input type="email" id="email" name="email" class="form-control" required aria-required="true">
-      </div>
-      <div class="mb-2">
-        <label for="senha" class="form-label">Senha</label>
-        <input type="password" id="senha" name="senha" class="form-control" required aria-required="true" aria-describedby="senha-ajuda">
-        <div id="senha-ajuda" class="form-text">A senha deve ter pelo menos 6 caracteres.</div>
-      </div>
-      <button type="submit" class="btn btn-neon w-100 mt-2">Cadastrar</button>
-      <!-- mensagem dinâmica: <p id="msgCadastro"></p> -->
-    </form>
+    </div>
   </main>
 
-  <footer class="text-center py-4 border-top border-neon">
-    <p class="mb-0">&copy; <span data-ano></span> Lara Games — Cadastro</p>
+  <footer class="py-3 mt-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      <span class="small muted">© <span data-ano></span> Lara Games — FIAP</span>
+      <span class="small muted">Cadastro</span>
+    </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

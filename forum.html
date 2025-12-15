@@ -1,81 +1,67 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lara Games — Fórum</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
-<body class="bg-dark text-light">
-  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-neon">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="index.html">
-        <span class="logo">
-          <span class="lara">LARA</span>
-          <span class="games">GAMES</span>
-          <svg class="curve" viewBox="0 0 200 20" aria-hidden="true"><path d="M5 12 C 45 2, 85 22, 125 12 S 205 18, 195 12" stroke="#00D1FF" stroke-width="6" fill="none" stroke-linecap="round"/></svg>
-        </span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav"><span class="navbar-toggler-icon"></span></button>
-      <div class="collapse navbar-collapse" id="menuNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Loja</a></li>
-          <li class="nav-item"><a class="nav-link" href="meus-jogos.html">Meus Jogos</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="forum.html">Fórum</a></li>
-          <li class="nav-item"><a class="nav-link" href="cadastro.html">Criar Conta</a></li>
-        </ul>
-      </div>
+<body>
+<a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand brand" href="index.html">LARA <span class="brand-gradient">GAMES</span></a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="nav" class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="index.html">Loja</a></li>
+        <li class="nav-item"><a class="nav-link" href="catalogo.html">Catálogo</a></li>
+        <li class="nav-item"><a class="nav-link active" href="forum.html">Fórum</a></li>
+        <li class="nav-item"><a class="nav-link" href="cadastro.html">Criar Conta</a></li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <header class="container text-center py-5">
-    <h1 class="display-6 fw-bold text-neon">Fórum da Comunidade</h1>
-    <p class="lead">Discussões e dicas sobre jogos brasileiros.</p>
-    <div class="mt-3 acessibilidade" aria-label="Configurações de acessibilidade">
-      <label class="me-3"><input type="checkbox" id="alto-contraste"> Alto contraste</label>
-      <label><input type="checkbox" id="grande-fonte"> Fonte ampliada</label>
-    </div>
-  </header>
+<header class="container py-4">
+  <h1 class="h3 fw-bold">Fórum da Comunidade</h1>
+  <p class="muted">Discussões, dicas e troca de experiências.</p>
+</header>
 
-  <main id="conteudo-principal" tabindex="-1" class="container pb-5">
-    <div class="list-group">
-      <a class="list-group-item list-group-item-action bg-panel text-light border-neon mb-3" href="#" aria-label="Discussão Melhor jogo brasileiro">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1 text-neon">[Discussão] Melhor jogo brasileiro?</h5>
-          <small>15 respostas</small>
-        </div>
-        <p class="mb-1">Comparando experiências e recomendações.</p>
-        <small>Iniciado por Mj.gamer</small>
-      </a>
-      <a class="list-group-item list-group-item-action bg-panel text-light border-neon mb-3" href="#" aria-label="Ajuda problema no Linux">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1 text-neon">[Ajuda] Problema para rodar no Linux</h5>
-          <small>8 respostas</small>
-        </div>
-        <p class="mb-1">Drivers e proton. Como resolver?</p>
-        <small>Iniciado por vitorweb</small>
-      </a>
-      <a class="list-group-item list-group-item-action bg-panel text-light border-neon" href="#" aria-label="Sugestão novos modos">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1 text-neon">[Sugestão] Novos modos de jogo para Capoeira Warriors</h5>
-          <small>22 respostas</small>
-        </div>
-        <p class="mb-1">Ideias de modos cooperativos e torneios.</p>
-        <small>Iniciado por RafaelDev</small>
-      </a>
-    </div>
-  </main>
+<main id="conteudo-principal" class="container pb-5">
+  <div class="shell p-3 p-md-4">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item bg-transparent text-light border-secondary">
+        <strong>[Discussão]</strong> Melhor jogo brasileiro?
+        <span class="muted d-block small">15 respostas</span>
+      </li>
+      <li class="list-group-item bg-transparent text-light border-secondary">
+        <strong>[Ajuda]</strong> Problema para rodar no Linux
+        <span class="muted d-block small">8 respostas</span>
+      </li>
+      <li class="list-group-item bg-transparent text-light border-secondary">
+        <strong>[Sugestão]</strong> Novos modos para Capoeira Warriors
+        <span class="muted d-block small">22 respostas</span>
+      </li>
+    </ul>
+  </div>
+</main>
 
-  <footer class="text-center py-4 border-top border-neon">
-    <p class="mb-0">&copy; <span data-ano></span> Lara Games — Fórum</p>
-  </footer>
+<footer class="py-3 mt-4">
+  <div class="container d-flex justify-content-between">
+    <span class="small muted">© <span data-ano></span> Lara Games</span>
+    <span class="small muted">Fórum</span>
+  </div>
+</footer>
 
-  <script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

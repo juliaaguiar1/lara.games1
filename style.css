@@ -1,74 +1,104 @@
 :root{
-  --bg: #0B0F14;
-  --text: #E6F7F6;
-  --muted: #b9d9f2;
-  --neon: #00D1FF;         /* azul neon */
-  --magenta: #FF2E88;
-  --brand-white: #ffffff;  /* LARA */
-  --brand-blue: #00D1FF;   /* GAMES */
+  --lara-primary:#7c3aed;   /* roxo */
+  --lara-secondary:#22d3ee; /* cyan */
+  --lara-bg:#020617;
+  --lara-panel: rgba(11,18,34,.70);
+  --lara-border: rgba(148,163,184,.30);
+  --lara-text: #e5e7eb;
+  --lara-muted: rgba(229,231,235,.72);
 }
 
 body{
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-}
-h1,h2,h3,.navbar-brand{ font-family: 'Oxanium', sans-serif; }
-
-/* ====== LOGO ====== */
-.navbar-brand .logo{
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: .4rem;
-  line-height: 1;
-}
-.logo .lara{ color: var(--brand-white); font-weight: 800; letter-spacing:.5px; position:relative; display:inline-block; }
-.logo .games{ color: var(--brand-blue); font-weight: 800; letter-spacing:.5px; }
-
-.logo .curve{
-  position: absolute;
-  left: 0; /* alinhado ao início da palavra LARA */
-  bottom: -8px;       /* distância sob o texto */
-  width: calc(4.2ch + 12px); /* ~ largura de "LARA"; ajuste fino automático */
-  height: 16px;
-  pointer-events: none;
-}
-@media (max-width: 420px){
-  .logo .curve{ width: calc(4.2ch + 6px); bottom:-7px; }
+  background: radial-gradient(circle at top, #111827 0, #020617 55%, #020617 100%);
+  color: var(--lara-text);
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-/* Destaques */
-.text-neon{ color: var(--neon) !important; }
-.border-neon{ border-color: var(--neon) !important; }
-.bg-panel{ background-color: #0c121a; }
-
-/* Cartões de jogos */
-.card.bg-black{
-  background-color: #000 !important;
-  border: 1px solid var(--neon) !important;
-  box-shadow: 0 0 14px rgba(0,209,255,.15);
+/* Navbar padrão */
+.navbar{
+  background: rgba(2,6,23,.92) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--lara-border);
 }
-.card .card-title{ color: var(--neon); }
 
-/* Botões neon */
-.btn-neon{
-  background: var(--neon);
-  color: #00131a;
+.brand{
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.brand-gradient{
+  background: linear-gradient(90deg, var(--lara-primary), var(--lara-secondary));
+  -webkit-background-clip:text;
+  color: transparent;
+}
+
+/* Container visual (cards/painéis) */
+.shell{
+  background: var(--lara-panel);
+  border: 1px solid var(--lara-border);
+  border-radius: 1rem;
+  box-shadow: 0 18px 45px rgba(0,0,0,.25);
+}
+
+.muted{ color: var(--lara-muted) !important; }
+
+/* Cards de jogos */
+.game-card{
+  overflow: hidden;
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+.game-card:hover{
+  transform: translateY(-4px);
+  border-color: rgba(34,211,238,.85);
+  box-shadow: 0 28px 65px rgba(0,0,0,.45);
+}
+.game-img{
+  width:100%;
+  height:170px;
+  object-fit:cover;
+  display:block;
+  filter:saturate(1.05);
+}
+.badge-genre{
+  background: rgba(148,163,184,.12);
+  border: 1px solid rgba(148,163,184,.32);
+}
+
+/* Filtros */
+.filter-btn.active, .category-btn.active{
+  background: var(--lara-secondary) !important;
+  border-color: var(--lara-secondary) !important;
+  color: #020617 !important;
   font-weight: 700;
-  border: none;
 }
-.btn-neon:hover{ background: #00b3da; color:#00131a; }
 
-/* Link “pular para o conteúdo” (visível ao focar) */
+/* Favoritos */
+.btn-fav{
+  text-decoration:none;
+  padding: .25rem .45rem;
+  border-radius:.6rem;
+  border:1px solid rgba(148,163,184,.30);
+  background: transparent;
+}
+.btn-fav i{ color: var(--lara-text); }
+.btn-fav.active{
+  border-color: rgba(249,115,22,.9);
+  background: rgba(249,115,22,.10);
+}
+.btn-fav.active i{ color:#f97316; }
+
+/* Skip link */
 .skip-link{
-  position:absolute; left:-9999px; top:auto;
+  position:absolute;
+  left:-9999px;
+  top:auto;
 }
 .skip-link:focus{
   position: static;
   display:inline-block;
-  background: var(--neon);
-  color:#00131a;
+  background: var(--lara-secondary);
+  color:#020617;
   padding:.5rem 1rem;
   font-weight: 800;
   border-radius: .5rem;
@@ -76,30 +106,38 @@ h1,h2,h3,.navbar-brand{ font-family: 'Oxanium', sans-serif; }
   z-index: 1000;
 }
 
-/* Painel de acessibilidade (checkboxes) */
-.acessibilidade{
-  display:flex; gap:1rem; justify-content:center; align-items:center;
-  padding:.6rem .8rem; border-top:1px solid var(--neon); border-bottom:1px solid var(--neon);
-  background: #0a1017; border-radius:.5rem;
+/* Botão voltar ao topo */
+#btnScrollTop{
+  position:fixed;
+  bottom:18px;
+  right:18px;
+  display:none;
+  z-index:999;
 }
-.acessibilidade label{ cursor:pointer; font-weight: 600; }
 
-/* Acessibilidade: foco visível + alto contraste + fonte ampliada */
-:focus-visible{ outline: 3px solid var(--magenta); outline-offset: 2px; }
+/* Footer */
+footer{
+  border-top: 1px solid var(--lara-border);
+}
 
-body.alto-contraste{ background:#000 !important; color:#fff !important; }
-body.alto-contraste a{ color: #ff0 !important; }
-body.alto-contraste .card{ border-color:#fff !important; box-shadow: 0 0 10px #fff !important; }
+/* Acessibilidade (compatível com o script.js) */
+body.high-contrast{
+  background:#000 !important;
+  color:#fff !important;
+}
+body.high-contrast .navbar{
+  background:#000 !important;
+  border-bottom:1px solid #fff !important;
+}
+body.high-contrast .shell{
+  background:#000 !important;
+  border-color:#fff !important;
+}
+body.font-large{
+  font-size: 1.12rem;
+}
 
-body.fonte-maior{ font-size: 18px; }
-
-/* Rodapé */
-footer p{ color: var(--muted); }
-
-/* Imagens responsivas com contenção */
-.img-contain{ object-fit: contain; background:#000; }
-
-/* Pequenos ajustes responsivos */
-@media (max-width: 576px){
-  .acessibilidade{ flex-direction:column; }
+/* Sticky sidebar em telas grandes */
+@media (min-width: 992px){
+  .sticky-lg{ position: sticky; top: 88px; }
 }

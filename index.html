@@ -1,44 +1,167 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lara Games — Loja</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"/>
 
-  <!-- Estilos -->
-  <link rel="stylesheet" href="style.css"/>
+  <style>
+    :root{
+      --lara-primary:#7c3aed;
+      --lara-secondary:#22d3ee;
+      --lara-bg:#020617;
+      --lara-card:#0b1222;
+      --lara-border:rgba(148,163,184,.30);
+    }
+
+    body{
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #020617 100%);
+      color:#e5e7eb;
+      min-height:100vh;
+    }
+
+    .navbar{
+      background: rgba(2,6,23,.92) !important;
+      backdrop-filter: blur(12px);
+      border-bottom:1px solid var(--lara-border);
+    }
+
+    .brand{
+      font-weight:900;
+      letter-spacing:2px;
+    }
+
+    .brand-gradient{
+      background: linear-gradient(90deg, var(--lara-primary), var(--lara-secondary));
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+
+    .shell{
+      background: rgba(11,18,34,.70);
+      border:1px solid var(--lara-border);
+      border-radius:1rem;
+      box-shadow: 0 18px 45px rgba(0,0,0,.25);
+    }
+
+    .hero{
+      padding: 2.2rem 0 1.2rem;
+    }
+
+    .hero h1{
+      line-height:1.05;
+    }
+
+    .muted{
+      color: rgba(229,231,235,.75);
+    }
+
+    /* Sidebar fixa em telas grandes */
+    @media (min-width: 992px){
+      .sticky-lg{
+        position: sticky;
+        top: 88px;
+      }
+    }
+
+    .game-card{
+      overflow:hidden;
+      transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+    }
+    .game-card:hover{
+      transform: translateY(-4px);
+      border-color: rgba(34,211,238,.85);
+      box-shadow: 0 28px 65px rgba(0,0,0,.45);
+    }
+
+    .game-img{
+      width:100%;
+      height:170px;
+      object-fit:cover;
+      display:block;
+      filter:saturate(1.05);
+    }
+
+    .badge-genre{
+      background: rgba(148,163,184,.12);
+      border:1px solid rgba(148,163,184,.32);
+    }
+
+    .filter-btn.active{
+      background: var(--lara-secondary) !important;
+      border-color: var(--lara-secondary) !important;
+      color:#020617 !important;
+      font-weight:700;
+    }
+
+    .btn-fav{
+      text-decoration:none;
+      padding: .25rem .45rem;
+      border-radius:.6rem;
+      border:1px solid rgba(148,163,184,.30);
+      background: transparent;
+    }
+    .btn-fav i{ color:#e5e7eb; }
+    .btn-fav.active{
+      border-color: rgba(249,115,22,.9);
+      background: rgba(249,115,22,.10);
+    }
+    .btn-fav.active i{ color:#f97316; }
+
+    /* Acessibilidade (compatível com seu script) */
+    body.high-contrast{
+      background:#000 !important;
+      color:#fff !important;
+    }
+    body.high-contrast .navbar{
+      background:#000 !important;
+      border-bottom:1px solid #fff !important;
+    }
+    body.high-contrast .shell{
+      background:#000 !important;
+      border-color:#fff !important;
+    }
+
+    body.font-large{
+      font-size: 1.12rem;
+    }
+
+    #btnScrollTop{
+      position:fixed;
+      bottom:18px;
+      right:18px;
+      display:none;
+      z-index:999;
+    }
+
+    footer{
+      border-top:1px solid var(--lara-border);
+    }
+  </style>
 </head>
-<body class="bg-dark text-light">
-  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-neon">
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="index.html" aria-label="Página inicial Lara Games">
-        <span class="logo">
-          <span class="lara">LARA</span>
-          <span class="games">GAMES</span>
-          <!-- Traço curvo azul sob 'LARA' (SVG inline) -->
-          <svg class="curve" viewBox="0 0 200 20" aria-hidden="true" focusable="false">
-            <path d="M5 12 C 45 2, 85 22, 125 12 S 205 18, 195 12"
-                  stroke="#00D1FF" stroke-width="6" fill="none" stroke-linecap="round"/>
-          </svg>
-        </span>
+      <a class="navbar-brand brand" href="index.html">
+        LARA <span class="brand-gradient">GAMES</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav" aria-controls="menuNav" aria-expanded="false" aria-label="Alternar navegação">
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menu">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="menuNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Loja</a></li>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Loja</a></li>
           <li class="nav-item"><a class="nav-link" href="meus-jogos.html">Meus Jogos</a></li>
           <li class="nav-item"><a class="nav-link" href="suporte.html">Suporte</a></li>
           <li class="nav-item"><a class="nav-link" href="cadastro.html">Criar Conta</a></li>
@@ -47,70 +170,363 @@
     </div>
   </nav>
 
-  <!-- Header + Acessibilidade -->
-  <header class="container text-center py-5">
-    <h1 class="display-5 fw-bold">
-      Bem-vindo à <span class="lara">Lara</span> <span class="games">Games</span>
-    </h1>
-    <p class="lead">Explore e apoie os melhores jogos desenvolvidos no Brasil 🇧🇷</p>
-    <div class="mt-3 acessibilidade" aria-label="Configurações de acessibilidade">
-      <label class="me-3"><input type="checkbox" id="alto-contraste"> Alto contraste</label>
-      <label><input type="checkbox" id="grande-fonte"> Fonte ampliada</label>
+  <!-- HERO (curto e limpo) -->
+  <header class="container hero">
+    <div class="row align-items-center g-3">
+      <div class="col-lg-8">
+        <p class="text-uppercase small muted mb-1">plataforma de jogos brasileiros</p>
+        <h1 class="display-5 fw-bold mb-2">
+          Bem-vindo à <span class="brand-gradient">Lara Games</span>
+        </h1>
+        <p class="muted mb-0">
+          Explore a loja com busca, filtros, favoritos e detalhes em modal.
+        </p>
+      </div>
+      <div class="col-lg-4 d-flex gap-2 justify-content-lg-end">
+        <a class="btn btn-outline-light btn-sm" href="#loja">Ver jogos</a>
+        <a class="btn btn-light btn-sm" href="#newsletter">Receber novidades</a>
+      </div>
     </div>
   </header>
 
-  <!-- Conteúdo -->
-  <main id="conteudo-principal" tabindex="-1" class="container pb-5">
-    <section class="text-center mb-4">
-      <h2 class="fw-bold text-neon">Destaques da Loja</h2>
-      <p>Descubra títulos brasileiros incríveis e mergulhe na criatividade nacional.</p>
-    </section>
-
+  <!-- CONTEÚDO -->
+  <main class="container pb-5" id="loja">
     <div class="row g-4">
-      <!-- Card 1 -->
-      <div class="col-md-4">
-        <div class="card h-100 bg-black text-light border-neon">
-          <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/389140/header.jpg" class="card-img-top img-fluid img-contain" alt="Capa do jogo Horizon Chase Turbo">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Horizon Chase Turbo</h5>
-            <p class="card-text">Corridas arcade com visual retrô e trilha sonora nostálgica. Aquiris (Brasil).</p>
-            <a href="https://store.steampowered.com/app/389140/Horizon_Chase_Turbo/?l=brazilian" target="_blank" rel="noopener" class="btn btn-neon mt-auto w-100">Comprar — R$ 62,90</a>
-          </div>
-        </div>
-      </div>
 
-      <!-- Card 2 -->
-      <div class="col-md-4">
-        <div class="card h-100 bg-black text-light border-neon">
-          <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/251130/header.jpg" class="card-img-top img-fluid img-contain" alt="Capa do jogo Chroma Squad">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Chroma Squad</h5>
-            <p class="card-text">Gerencie sua própria equipe de heróis em batalhas táticas. Behold Studios (Brasil).</p>
-            <a href="https://store.steampowered.com/app/251130/Chroma_Squad/?l=brazilian" target="_blank" rel="noopener" class="btn btn-neon mt-auto w-100">Comprar — R$ 49,90</a>
+      <!-- SIDEBAR CONTROLES -->
+      <aside class="col-lg-4">
+        <div class="shell p-3 p-md-4 sticky-lg">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h2 class="h5 mb-0">Filtros</h2>
+            <span class="small muted">
+              <i class="bi bi-heart-fill me-1"></i>
+              <strong id="favCount">0</strong>
+            </span>
           </div>
-        </div>
-      </div>
 
-      <!-- Card 3 -->
-      <div class="col-md-4">
-        <div class="card h-100 bg-black text-light border-neon">
-          <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/612390/header.jpg" class="card-img-top img-fluid img-contain" alt="Capa do jogo Dandara">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Dandara</h5>
-            <p class="card-text">Metroidvania inspirado na heroína Dandara dos Palmares. Long Hat House (Brasil).</p>
-            <a href="https://store.steampowered.com/app/612390/Dandara/?l=brazilian" target="_blank" rel="noopener" class="btn btn-neon mt-auto w-100">Comprar — R$ 85,00</a>
+          <div class="mb-3">
+            <label for="searchInput" class="form-label small mb-1">Buscar jogo</label>
+            <input id="searchInput" type="text" class="form-control form-control-sm"
+              placeholder="Digite nome ou termo (corrida, tático...)" />
+          </div>
+
+          <div class="mb-3">
+            <div class="small muted mb-2">Filtrar por estilo</div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-outline-light btn-sm filter-btn active" data-genre="all">Todos</button>
+              <button class="btn btn-outline-light btn-sm filter-btn" data-genre="corrida">Corrida</button>
+              <button class="btn btn-outline-light btn-sm filter-btn" data-genre="tatico">Tático</button>
+              <button class="btn btn-outline-light btn-sm filter-btn" data-genre="metroidvania">Metroidvania</button>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label small mb-1" for="sortSelect">Ordenar</label>
+            <select id="sortSelect" class="form-select form-select-sm">
+              <option value="default">Padrão</option>
+              <option value="az">Nome (A–Z)</option>
+              <option value="priceAsc">Preço (menor → maior)</option>
+              <option value="priceDesc">Preço (maior → menor)</option>
+            </select>
+          </div>
+
+          <hr class="border-secondary my-3" />
+
+          <!-- Acessibilidade em um bloco menor -->
+          <div class="d-grid gap-2">
+            <button id="btnHighContrast" class="btn btn-outline-light btn-sm">
+              <i class="bi bi-circle-half me-1"></i> Alto contraste
+            </button>
+            <button id="btnFontLarge" class="btn btn-outline-light btn-sm">
+              <i class="bi bi-type me-1"></i> Fonte ampliada
+            </button>
+            <button id="btnClearPrefs" class="btn btn-outline-light btn-sm">
+              <i class="bi bi-trash3 me-1"></i> Limpar preferências
+            </button>
+          </div>
+
+          <p class="small muted mt-3 mb-0">
+            Preferências ficam salvas (localStorage).
+          </p>
+        </div>
+      </aside>
+
+      <!-- GRID DE JOGOS -->
+      <section class="col-lg-8">
+        <div class="shell p-3 p-md-4">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="h5 mb-0">Jogos em destaque</h2>
+            <span class="small muted">3 itens</span>
+          </div>
+
+          <div class="row g-3" id="gamesGrid">
+
+            <!-- Horizon -->
+            <div class="col-md-6 game-col"
+              data-game-id="horizon"
+              data-title="Horizon Chase Turbo"
+              data-genre="corrida"
+              data-tags="corrida arcade retro carros aquiris brasil"
+              data-price="62.90"
+            >
+              <article class="shell game-card h-100">
+                <img class="game-img"
+                  src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/389140/header.jpg"
+                  alt="Capa do jogo Horizon Chase Turbo">
+                <div class="p-3 d-flex flex-column h-100">
+                  <div class="d-flex justify-content-between align-items-start gap-2">
+                    <h3 class="h6 mb-1">Horizon Chase Turbo</h3>
+                    <span class="badge badge-genre">Corrida</span>
+                  </div>
+
+                  <p class="muted small flex-grow-1 mb-2">
+                    Corridas arcade com visual retrô e trilha nostálgica.
+                  </p>
+
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="fw-semibold text-success">R$ 62,90</span>
+
+                    <div class="d-flex gap-2">
+                      <button class="btn btn-outline-light btn-sm btn-details"
+                        data-title="Horizon Chase Turbo"
+                        data-genre="Corrida arcade"
+                        data-description="Participe de corridas de alta velocidade com visual retrô inspirado nos clássicos dos anos 90."
+                        data-platform="PC, Console"
+                        data-price="R$ 62,90"
+                      >Detalhes</button>
+
+                      <button class="btn btn-outline-light btn-sm btn-buy"
+                        data-url="https://store.steampowered.com/app/389140"
+                        data-game="Horizon Chase Turbo"
+                      >Comprar</button>
+
+                      <button class="btn btn-fav" type="button" title="Favoritar" data-game-id="horizon">
+                        <i class="bi bi-heart"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Chroma -->
+            <div class="col-md-6 game-col"
+              data-game-id="chroma"
+              data-title="Chroma Squad"
+              data-genre="tatico"
+              data-tags="tatico rpg equipe herois behold studios brasil"
+              data-price="49.90"
+            >
+              <article class="shell game-card h-100">
+                <img class="game-img"
+                  src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/251130/header.jpg"
+                  alt="Capa do jogo Chroma Squad">
+                <div class="p-3 d-flex flex-column h-100">
+                  <div class="d-flex justify-content-between align-items-start gap-2">
+                    <h3 class="h6 mb-1">Chroma Squad</h3>
+                    <span class="badge badge-genre">Tático</span>
+                  </div>
+
+                  <p class="muted small flex-grow-1 mb-2">
+                    Gerencie uma equipe e enfrente batalhas táticas.
+                  </p>
+
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="fw-semibold text-success">R$ 49,90</span>
+
+                    <div class="d-flex gap-2">
+                      <button class="btn btn-outline-light btn-sm btn-details"
+                        data-title="Chroma Squad"
+                        data-genre="Tático, RPG"
+                        data-description="Comande um estúdio de tokusatsu e lute em batalhas de RPG tático."
+                        data-platform="PC, Console"
+                        data-price="R$ 49,90"
+                      >Detalhes</button>
+
+                      <button class="btn btn-outline-light btn-sm btn-buy"
+                        data-url="https://store.steampowered.com/app/251130"
+                        data-game="Chroma Squad"
+                      >Comprar</button>
+
+                      <button class="btn btn-fav" type="button" title="Favoritar" data-game-id="chroma">
+                        <i class="bi bi-heart"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Dandara -->
+            <div class="col-md-6 game-col"
+              data-game-id="dandara"
+              data-title="Dandara"
+              data-genre="metroidvania"
+              data-tags="metroidvania plataforma long hat house brasil"
+              data-price="85.00"
+            >
+              <article class="shell game-card h-100">
+                <img class="game-img"
+                  src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/612390/capsule_616x353.jpg"
+                  alt="Capa do jogo Dandara">
+                <div class="p-3 d-flex flex-column h-100">
+                  <div class="d-flex justify-content-between align-items-start gap-2">
+                    <h3 class="h6 mb-1">Dandara</h3>
+                    <span class="badge badge-genre">Metroidvania</span>
+                  </div>
+
+                  <p class="muted small flex-grow-1 mb-2">
+                    Movimento pelas paredes e exploração em mundo surreal.
+                  </p>
+
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="fw-semibold text-success">R$ 85,00</span>
+
+                    <div class="d-flex gap-2">
+                      <button class="btn btn-outline-light btn-sm btn-details"
+                        data-title="Dandara"
+                        data-genre="Metroidvania"
+                        data-description="Desafie a gravidade e explore segredos em um metroidvania brasileiro."
+                        data-platform="PC, Console"
+                        data-price="R$ 85,00"
+                      >Detalhes</button>
+
+                      <button class="btn btn-outline-light btn-sm btn-buy"
+                        data-url="https://store.steampowered.com/app/612390"
+                        data-game="Dandara"
+                      >Comprar</button>
+
+                      <button class="btn btn-fav" type="button" title="Favoritar" data-game-id="dandara">
+                        <i class="bi bi-heart"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+
           </div>
         </div>
-      </div>
+
+        <!-- NEWSLETTER (recolhido) -->
+        <section class="mt-4" id="newsletter">
+          <div class="accordion" id="newsletterAcc">
+            <div class="accordion-item shell">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed bg-transparent text-light" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#newsletterCollapse">
+                  Receba novidades (formulário com validação)
+                </button>
+              </h2>
+              <div id="newsletterCollapse" class="accordion-collapse collapse" data-bs-parent="#newsletterAcc">
+                <div class="accordion-body">
+                  <form id="newsletterForm" novalidate>
+                    <div class="row g-2">
+                      <div class="col-md-6">
+                        <label class="form-label small mb-1" for="nomeInput">Nome</label>
+                        <input id="nomeInput" type="text" class="form-control form-control-sm" required />
+                        <div class="invalid-feedback">Informe seu nome (mínimo 3 caracteres).</div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <label class="form-label small mb-1" for="emailInput">E-mail</label>
+                        <input id="emailInput" type="email" class="form-control form-control-sm" required />
+                        <div class="invalid-feedback">Informe um e-mail válido.</div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <label class="form-label small mb-1" for="tipoSelect">Perfil</label>
+                        <select id="tipoSelect" class="form-select form-select-sm" required>
+                          <option value="">Selecione...</option>
+                          <option value="casual">Casual</option>
+                          <option value="competitivo">Competitivo</option>
+                          <option value="historia">Foco em história</option>
+                          <option value="colecionador">Colecionador(a)</option>
+                        </select>
+                        <div class="invalid-feedback">Selecione uma opção.</div>
+                      </div>
+
+                      <div class="col-12">
+                        <div class="form-check mt-2">
+                          <input class="form-check-input" type="checkbox" id="termsCheck" required />
+                          <label class="form-check-label small" for="termsCheck">
+                            Aceito receber comunicações da Lara Games.
+                          </label>
+                          <div class="invalid-feedback">Você precisa aceitar para continuar.</div>
+                        </div>
+                      </div>
+
+                      <div class="col-12 mt-2">
+                        <button type="submit" class="btn btn-light btn-sm w-100">Cadastrar</button>
+
+                        <div id="formAlert" class="alert alert-success py-2 px-3 mt-3 d-none" role="alert">
+                          ✅ Cadastro realizado! Você receberá novidades em breve.
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </section>
     </div>
   </main>
 
-  <!-- Rodapé -->
-  <footer class="text-center py-4 border-top border-neon">
-    <p class="mb-0">&copy; <span data-ano></span> Lara Games — Todos os direitos reservados</p>
+  <!-- BOTÃO VOLTAR AO TOPO -->
+  <button id="btnScrollTop" class="btn btn-light rounded-circle shadow" aria-label="Voltar ao topo">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- TOAST (COMPRA) -->
+  <div class="position-fixed bottom-0 start-50 translate-middle-x pb-3" style="z-index:1080;">
+    <div id="buyToast" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body small" id="buyToastText">Abrindo página do jogo...</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Fechar"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL (DETALHES) -->
+  <div class="modal fade" id="gameModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-header">
+          <h5 class="modal-title" id="gameModalTitle">Título</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="small mb-1"><strong>Gênero:</strong> <span id="gameModalGenre"></span></p>
+          <p class="small mb-1"><strong>Plataformas:</strong> <span id="gameModalPlatform"></span></p>
+          <p class="small mb-2"><strong>Preço:</strong> <span id="gameModalPrice"></span></p>
+          <hr class="border-secondary" />
+          <p id="gameModalDescription" class="small mb-0"></p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-light" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="py-3 mt-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      <span class="small muted">© <span data-ano></span> Lara Games — FIAP</span>
+      <span class="small muted">Loja organizada + JS</span>
+    </div>
   </footer>
 
+  <!-- Bootstrap Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Seu JS -->
   <script src="script.js"></script>
 </body>
 </html>
+
+
 
